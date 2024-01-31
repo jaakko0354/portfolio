@@ -1,2 +1,2 @@
 # Personal portfolio-project
-  A webpage project which showcases my abilities to create a dynamic webpage and previous experiences.
+  A webpage project which showcases my previous experiences and abilities to create a dynamic webpage.
