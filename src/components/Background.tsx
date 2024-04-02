@@ -45,6 +45,13 @@ export default function Background() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [hasScrolledToProjects]);
+
+  const avatarClick = () => {
+    const avatar = document.querySelector('.profile-picture');
+    avatar?.classList.toggle('active');
+    const info = document.querySelector('.info-container');
+    info?.classList.toggle('active');
+  }
   
 
   /* const focusProjects = () => {
@@ -57,12 +64,19 @@ export default function Background() {
   return (
     <div className="background-color">
       {showAvatar ? (
-          <Avatar size={300} src={cvkuva} className="profilePicture" style={{ opacity: avatarOpacity }} />
+          <div className='avatar-container'>
+            <Avatar size={300} src={cvkuva} className="profile-picture" style={{ opacity: avatarOpacity }} onClick={() => avatarClick()}/>
+            <div className="info-container" onClick={() => avatarClick()} style={{ opacity: avatarOpacity }}>
+              <div className='info-box'/>
+              <div className='info-ball'/>
+              <p className='info-text'>About me</p></div>
+            </div>
         ) : (
           <div className="avatar-placeholder" />
-        )}
-      <div className="background-triangle" style={{ transform: `translateY(-${scrollY * 0.4}px)` }}/>
-      <div className="background-square" style={{ transform: `translateY(-${scrollY * 0.4}px)`}}>
+          )}
+        
+      <div className="background-triangle" style={{ transform: `translateY(-${scrollY * 0.4}px)`, zIndex:2}}/>
+      <div className="background-square" style={{ transform: `translateY(-${scrollY * 0.4}px)`, zIndex:3}}>
         <DoubleRightOutlined 
         rotate={90}
         style={{ fontSize:'50px', color:'#269d3e',}}
