@@ -10,10 +10,10 @@ const Projects = forwardRef<HTMLDivElement, ProjectsProps>(
     const projectsOpacity = () => {
       const fadeInStart = 350;
       const fadeInEnd = 500;
-      const fadeOutStart = 550; // Adjust this value based on when you want the fade-out effect to start
+      const fadeOutStart = 550;
       const fadeOutEnd = 700;
       if (scrollY < fadeInStart) {
-        return 0; // Before fade-in range
+        return 0;
       } else if (scrollY < fadeInEnd) {
         return (scrollY - fadeInStart) / (fadeInEnd - fadeInStart); // Fade in
       } else if (scrollY < fadeOutStart) {
@@ -21,7 +21,7 @@ const Projects = forwardRef<HTMLDivElement, ProjectsProps>(
       } else if (scrollY < fadeOutEnd) {
         return 1 - (scrollY - fadeOutStart) / (fadeOutEnd - fadeOutStart); // Fade out
       } else {
-        return 0; // After fade-out range
+        return 0;
       }
     };
     const projectsTranslateY = scrollY * 0.7;
