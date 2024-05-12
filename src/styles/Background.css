@@ -24,21 +24,51 @@ body, html {
     position: relative;
 }
 .profile-picture {
-    height: 200px;
-    left: -2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    transition: transform 1s ease-in-out;
+    transform: translateX(0);
+    transform-origin: 0; 
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+.profile-picture .front {
+    height: 290px;
+    width: 300px;
     border-radius: 50%;
     margin-top: 50px;
     margin-bottom: 50px;
     border: 1px transparent #343131;
     box-shadow: 4px 4px #313131;
-    transition: transform 0.7s ease;
-    transform: translateX(0);
     background-color: black;
+    z-index: 3;
+    backface-visibility: hidden;
+}
+
+
+.profile-picture .back {
+    position: fixed;
+    height: 290px;
+    width: 300px;
+    border-radius: 50%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: 1px transparent #343131;
+    box-shadow: 4px 4px #313131;
+    
+    /*https://stackoverflow.com/a/56922634*/
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAPUlEQVQoU43PQQoAMAgDweT/j7ZYUGoRo+dhicTujAtnAKjgRR6bYCIFy6quWEqh1casvrAt/cURxTMSOTyKNQgKOBqKWwAAAABJRU5ErkJggg==
+    ) repeat;
+    border: 1px solid #343131;
     z-index: 2;
 }
 
 .profile-picture.active {
-    transform: translateX(-300px);
+    transform: rotateY(180deg);
 }
 .avatar-placeholder {
     height: 390px;
@@ -47,121 +77,19 @@ body, html {
 .projects-placeholder {
     height: 600px;
 }
-.info-container {
-    width: 65%;
-    height: 94%;
-    left: 18%;
-    top: 3.5%;
-    position: absolute;
-    align-items: center;
-    display: flex;
-    opacity: 0;
-    transition: opacity 0.7s ease;
-}
 
-.info-container.active {
-    opacity: 1;
-}
 
-@keyframes infoBoxAnimation {
-    0% {
-        width: 0%;
-        left: 48%;
-        opacity: 1;
-    }
-    100% {
-        width: 35%;
-        left: 15%;
-        opacity: 1;
-    }
-}
 
-@keyframes infoBallAnimation {
-    0% {
-        opacity: 1;
-    }
-    5% {
-        opacity: 1;
-    }
-    10% {
-        opacity: 1;
-    }
-    40% {
-        opacity: 1;
-    }
-    80% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes infoBoxAnimationReverse {
-    0% {
-        width: 35%;
-        left: 15%;
-        opacity: 1;
-    }
-    100% {
-        width: 2%;
-        left: 48%;
-        opacity: 1;
-    }
-}
-
-@keyframes infoBallAnimationReverse {
-    0% {
-        opacity: 1;
-    }
-    40% {
-        opacity: 1;
-    }
-    80% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.info-box {
-    opacity: 1;
-    height: 79.2%;
-    left: 48%;
-    width: 0%;
-    position: absolute;
-    z-index: 1;
-    background: linear-gradient(to bottom, #269d3e, #b3ffc2, #269d3e);
-    border-top: #000702 2px solid;
-    border-bottom: #000702 2px solid;
-    animation: infoBoxAnimationReverse 0.7s ease forwards;
-    /*#a6edb4*/
-}
 .info-ball {
-    height: 79.2%;
-    width: 30%;
+    height: 290px;
+    width: 300px;
     border-radius: 50%;
-    background: linear-gradient(to bottom, #269d3e, #b3ffc2, #269d3e);
-    border: 0px 0px 2px 2px black solid;
-    position: relative;
-    left: 34%;
+    background: #b0d8b8;
     z-index: 0;
-    border: 2px solid black;
+    border: 4px solid black;
     opacity: 0;
     animation: infoBallAnimationReverse 0.7s ease forwards;
 }
-
-.info-container.active .info-box {
-    animation: infoBoxAnimation 0.7s ease forwards;
-}
-.info-container.active .info-ball {
-    animation: infoBallAnimation 0.7s ease forwards;
-}
-
 
 
 .info-text {
@@ -170,7 +98,6 @@ body, html {
     font-weight: 700;
     margin-top: 0px;
     position: absolute;
-    left: 40%;
     margin-bottom: 0px;
     padding: 0px;
     text-align: center;
