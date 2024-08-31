@@ -1,4 +1,4 @@
-import "../styles/Projects.css";
+import "../styles/Projects.scss";
 import { forwardRef } from "react";
 
 interface ProjectsProps {
