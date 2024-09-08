@@ -1,0 +1,52 @@
+  .background-triangle {
+    height: 0;
+    width: 0;
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    border-bottom: 100px solid #d45456;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 20;
+  }
+  .background-bottom-triangle {
+    border-left: 50vw solid #d45456;
+    border-right: 50vw solid #d45456;
+    border-bottom: 100px solid darken(#d45456, 20%);
+    position: absolute;
+    bottom: 1px;
+    z-index: 2;
+  }
+  .background-bottom-triangle-shadow {
+    height: 0;
+    width: 0;
+    bottom: -10px;
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    border-bottom: 100px solid #e9e3d7;
+    position: absolute;
+    left: 10px;
+    z-index: 3;
+  }
+  .background-bottom-triangle-box {
+    height: 110px;
+    width: 100vw;
+    background-color: darken(#d45456, 20%);
+    position: absolute;
+    bottom: -9px;
+    z-index: 1;
+  }
+
+  .background-square {
+    height: 350px;
+    width: 100vw;
+    background: #d45456;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 21;
+  }
+  

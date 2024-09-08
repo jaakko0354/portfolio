@@ -1,17 +1,11 @@
 import { DoubleRightOutlined } from "@ant-design/icons";
-import "../styles/Background.scss";
+import "../styles/Triangle.scss";
 
-export const Triangle = () => {
+export const Triangle = ({ onClick }: { onClick?: () => void }) => {
   return (
-    <div>
-      <div
-        className="background-triangle"
-        style={{ transform: `translateY(-${scrollY * 0.4}px)` }}
-      />
-      <div
-        className="background-square"
-        style={{ transform: `translateY(-${scrollY * 0.4}px)` }}
-      >
+    <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      <div className="background-triangle" />
+      <div className="background-square">
         <DoubleRightOutlined
           rotate={90}
           style={{
@@ -19,9 +13,7 @@ export const Triangle = () => {
             color: "black",
           }}
           className="down-arrow"
-          onClick={() => {
-            document.documentElement.scrollTo({ top: 520, behavior: "smooth" });
-          }}
+          onClick={onClick}
         />
         <div className="background-bottom-triangle" />
         <div className="background-bottom-triangle-box" />

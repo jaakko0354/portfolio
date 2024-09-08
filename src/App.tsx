@@ -1,9 +1,6 @@
-import Background from './components/Background'
+import Base from "./components/Base";
 function App() {
-  
-  return (
-      <Background/>
-  )
+  return <Base />;
 }
 
-export default App
+export default App;

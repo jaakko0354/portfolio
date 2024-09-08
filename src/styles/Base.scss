@@ -2,13 +2,11 @@ body,
 html {
   margin: 0;
   padding: 0;
-  width: 100%;
+  background: #e9e3d7;
 }
 
 .background-color {
-  background: #e9e3d7;
   display: flex;
-  min-height: 100%;
   flex-direction: column;
   align-items: center;
   overflow-y: hidden;
@@ -76,12 +74,9 @@ html {
 .profile-picture.active {
   transform: rotateY(180deg);
 }
-.avatar-placeholder {
-  height: 390px;
-}
 
 .projects-placeholder {
-  height: 600px;
+  height: 270px;
 }
 
 .info-ball {
@@ -121,57 +116,6 @@ html {
   text-align: center;
 }
 
-.background-triangle {
-  height: 0;
-  width: 0;
-  border-left: 50vw solid transparent;
-  border-right: 50vw solid transparent;
-  border-bottom: 100px solid #d45456;
-  overflow-x: hidden;
-  display: flex;
-  align-items: center;
-  margin-bottom: -1px;
-  position: relative;
-  z-index: 20;
-}
-.background-bottom-triangle {
-  height: 0;
-  width: 0;
-  border-left: 50vw solid #d45456;
-  border-right: 50vw solid #d45456;
-  border-bottom: 100px solid darken(#d45456, 10%);
-  position: absolute;
-  bottom: 1px;
-  z-index: 2;
-}
-.background-bottom-triangle-shadow {
-  height: 0;
-  width: 0;
-  bottom: -11px;
-  border-left: 50vw solid transparent;
-  border-right: 50vw solid transparent;
-  border-bottom: 100px solid #e9e3d7;
-  position: absolute;
-  z-index: 3;
-}
-.background-bottom-triangle-box {
-  height: 110px;
-  width: 100vw;
-  background-color: darken(#d45456, 10%);
-  position: absolute;
-  bottom: -10px;
-  z-index: 1;
-}
-.background-square {
-  height: 350px;
-  width: 100vw;
-  background: #d45456;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 21;
-}
 
 .down-arrow {
   position: absolute;
