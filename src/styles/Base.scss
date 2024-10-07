@@ -30,49 +30,72 @@ html {
   position: absolute;
   height: 300px;
   width: 300px;
-  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, box-shadow 1s ease-in-out;
   transform: translateX(0);
-  transform-origin: 0;
+  transform-origin: left;
   transform-style: preserve-3d;
-  z-index: 2;
+  z-index: 100;
+  border-radius: 50%;
   :hover {
     cursor: pointer;
   }
+
+  .hinge {
+    position: absolute;
+    width: 8px;
+    height: 15px;
+    background-color: #343131;
+    border-radius: 2px;
+    left: -3px;
+  }
+
+  .hinge.top {
+    top: 120px;
+    z-index: 10;
+  }
+
+  .hinge.bottom {
+    bottom: 120px;
+    z-index: 10;
+  }
 }
-.profile-picture .front {
-  height: 290px;
-  width: 300px;
+
+.profile-picture .front,
+.profile-picture .back {
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  border: 1px transparent #343131;
-  box-shadow: 4px 4px #313131;
+  backface-visibility: hidden;
+  border: 2px solid #343131;
+  box-sizing: border-box;
+}
+
+.profile-picture .front {
   background-color: black;
   z-index: 3;
-  backface-visibility: hidden;
 }
 
 .profile-picture .back {
   backface-visibility: visible;
   position: absolute;
-  height: 290px;
-  width: 300px;
-  border-radius: 50%;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  border: 1px transparent #343131;
-  box-shadow: 4px 4px #313131;
-
-  /*https://stackoverflow.com/a/56922634*/
-  background: white
-    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAPUlEQVQoU43PQQoAMAgDweT/j7ZYUGoRo+dhicTujAtnAKjgRR6bYCIFy6quWEqh1casvrAt/cURxTMSOTyKNQgKOBqKWwAAAABJRU5ErkJggg==)
-    repeat;
-  border: 1px solid #343131;
+  top: 0;
+  left: 0;
+  background: darken(#e9e3d7, 5%) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAPUlEQVQoU43PQQoAMAgDweT/j7ZYUGoRo+dhicTujAtnAKjgRR6bYCIFy6quWEqh1casvrAt/cURxTMSOTyKNQgKOBqKWwAAAABJRU5ErkJggg==);
   z-index: 2;
+  .panel {
+    position: absolute;
+    width: 20px;
+    height: 48px;
+    background-color: #343131;
+    left: -3px;
+    top: 123px;
+    border-radius: 2px;
+    z-index: 10;
+  }
 }
 
 .profile-picture.active {
-  transform: rotateY(180deg);
+  transform: rotateY(160deg);
 }
 
 .projects-placeholder {
@@ -86,8 +109,8 @@ html {
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.3);
   z-index: 0;
-  overflow: hidden;
 }
+
 .info-ball:hover {
   cursor: pointer;
 }
@@ -95,16 +118,17 @@ html {
 .info-ball:after {
   content: "";
   position: absolute;
-  top: 1%;
-  left: 2%;
-  width: 98%;
-  height: 98%;
-  box-shadow: inset 15px 5px 20px -10px rgba(0, 0, 0, 0.5);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 94%;
+  height: 94%;
+  box-shadow: inset 5px 7px 10px 2px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 50%;
-  background: white;
+  background: darken(#e9e3d7,5%)
+  
 }
-
 .info-text {
   color: rgb(0, 0, 0);
   font-size: 1.5rem;
@@ -116,6 +140,182 @@ html {
   text-align: center;
 }
 
+.shadow-element {
+  content: '';
+  position: relative;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.15);
+  &.active {
+    animation: shadowRotateAnimation 1s forwards ease-in-out;
+  }
+  &.inactive {
+    animation: shadowRotateAnimationReverse 1s forwards ease-in-out;
+  }
+}
+@keyframes shadowRotateAnimation {
+  0% {
+    opacity: 0;
+    left: 0%;
+    top: 0%;
+    width: 200px;
+    height: 300px;
+    transform: rotate(0deg);
+  }
+  10% {
+    left: 0%;
+    top: 5%;
+    width: 300px;
+    height: 305px;
+    transform: rotate(4.5deg);
+  }
+  20% {
+    left: 1%;
+    top: 10%;
+    width: 400px;
+    height: 310px;
+    transform: rotate(9deg);
+  }
+  30% {
+    left: -1%;
+    top: 15%;
+    width: 500px;
+    height: 315px;
+    transform: rotate(13.5deg);
+  }
+  40% {
+    left: -4%;
+    top: 25%;
+    width: 600px;
+    height: 320px;
+    transform: rotate(18deg);
+  }
+  50% {
+    left: -8%;
+    top: 35%;
+    width: 700px;
+    height: 325px;
+    transform: rotate(22.5deg);
+  }
+  60% {
+    left: -10%;
+    top: 40%;
+    width: 750px;
+    height: 330px;
+    transform: rotate(27deg);
+  }
+  70% {
+    left: -12%;
+    top: 45%;
+    width: 725px;
+    height: 335px;
+    transform: rotate(31.5deg);
+  }
+  80% {
+    left: -14%;
+    top: 47%;
+    width: 700px;
+    height: 340px;
+    transform: rotate(36deg);
+  }
+  90% {
+    left: -17%;
+    top: 48%;
+    width: 650px;
+    height: 345px;
+    transform: rotate(40.5deg);
+  }
+  100% {
+    opacity: 1;
+    left: -21%;
+    top: 50%;
+    width: 600px;
+    height: 300px;
+    transform: rotate(45deg);
+  }
+}
+@keyframes shadowRotateAnimationReverse {
+  0% {
+    opacity: 1;
+    left: -21%;
+    top: 50%;
+    width: 600px;
+    height: 300px;
+    transform: rotate(45deg);
+  }
+  10% {
+    left: -17%;
+    top: 48%;
+    width: 650px;
+    height: 345px;
+    transform: rotate(40.5deg);
+  }
+  20% {
+    left: -14%;
+    top: 47%;
+    width: 700px;
+    height: 340px;
+    transform: rotate(36deg);
+  }
+  30% {
+    left: -12%;
+    top: 45%;
+    width: 725px;
+    height: 335px;
+    transform: rotate(31.5deg);
+  }
+  40% {
+    left: -10%;
+    top: 40%;
+    width: 750px;
+    height: 330px;
+    transform: rotate(27deg);
+  }
+  50% {
+    left: -8%;
+    top: 35%;
+    width: 700px;
+    height: 325px;
+    transform: rotate(22.5deg);
+  }
+  60% {
+    left: -4%;
+    top: 25%;
+    width: 600px;
+    height: 320px;
+    transform: rotate(18deg);
+  }
+  70% {
+    left: -1%;
+    top: 15%;
+    width: 500px;
+    height: 315px;
+    transform: rotate(13.5deg);
+  }
+  80% {
+    left: 1%;
+    top: 10%;
+    width: 400px;
+    height: 310px;
+    transform: rotate(9deg);
+  }
+  90% {
+    left: 0%;
+    top: 5%;
+    width: 300px;
+    height: 305px;
+    transform: rotate(4.5deg);
+  }
+  100% {
+    opacity: 0;
+    left: 0%;
+    top: 0%;
+    width: 200px;
+    height: 300px;
+    transform: rotate(0deg);
+  }
+}
 
 .down-arrow {
   position: absolute;
