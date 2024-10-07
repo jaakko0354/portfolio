@@ -45,19 +45,29 @@ export default function Base() {
     <div className="background-color">
       <div className="avatar-container">
         <div
-          className={`profile-picture ${isActive ? "active" : ""}`}
+          className={`profile-picture ${isActive ? "active" : "inactive"}`}
           onClick={() => avatarClick()}
         >
+          <div className="hinge top" />
+          <div className="hinge bottom" />
           <Avatar size={300} src={cvkuva} className="front" />
-          <div className="back " />
+          <div className="back ">
+            <div className="panel" />
+            <div className="hinge-back top" />
+            <div className="hinge-back bottom" />
+          </div>
         </div>
-        <div className="info-ball" onClick={() => avatarClick()} />
+        <div className="info-ball" onClick={() => avatarClick()}>
+          <div
+            className={`shadow-element ${isActive ? "active" : "inactive"}`}
+          />
+        </div>
         <p className="info-text" onClick={() => avatarClick()}>
           About me
         </p>
       </div>
 
-      <div>
+      <div style={{ zIndex: 1 }}>
         <Triangle onClick={() => onMoveToSection(projectsRef)} />
 
         <div ref={projectsRef}>
