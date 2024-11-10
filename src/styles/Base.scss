@@ -95,9 +95,28 @@ html {
 }
 
 .profile-picture.active {
-  transform: rotateY(160deg);
+  animation: rotateProfilePicture 1s ease-in-out 0.3s forwards;
+}
+.profile-picture.inactive {
+  animation: rotateProfilePictureReverse 1s ease-in-out
 }
 
+@keyframes rotateProfilePicture {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(160deg);
+  }
+}
+@keyframes rotateProfilePictureReverse {
+  from {
+    transform: rotateY(160deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
 .projects-placeholder {
   height: 270px;
 }
@@ -147,20 +166,26 @@ html {
   border-radius: 50%;
   z-index: 2;
   box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.15);
-  &.active {
-    animation: shadowRotateAnimation 1s forwards ease-in-out;
-  }
-  &.inactive {
-    animation: shadowRotateAnimationReverse 1s forwards ease-in-out;
-  }
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.shadow-element.active {
+  animation: shadowRotateAnimation 1s ease-in-out 0.3s forwards;
+}
+
+.shadow-element.inactive {
+  animation: shadowRotateAnimationReverse 1s ease-in-out forwards;
 }
 @keyframes shadowRotateAnimation {
   0% {
     opacity: 0;
     left: 0%;
     top: 0%;
-    width: 200px;
-    height: 300px;
+    width: 0px;
+    height: 0px;
     transform: rotate(0deg);
   }
   10% {
@@ -315,6 +340,13 @@ html {
     height: 300px;
     transform: rotate(0deg);
   }
+}
+.valve-pressure-animation {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
 
 .down-arrow {
