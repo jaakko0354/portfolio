@@ -4,34 +4,41 @@ import { Avatar } from "antd";
 import cvkuva from "../assets/cv-kuva.jpg";
 import Projects from "./Projects";
 import { Triangle } from "./Triangle";
+import lottie from "lottie-web";
+import valve_pressure_animation from "../animation/valve_pressure_release.json";
 
 export default function Base() {
   const projectsRef = useRef<HTMLDivElement>(null);
+  const lottieRef = useRef<HTMLDivElement>(null);
+  const animationInstanceRef = useRef<any>(null);
 
-  const [isProjecsVisible, setIsProjectsVisible] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [hasClicked, setHasClicked] = useState(false);
 
   useEffect(() => {
-    if (scrollY >= 500) {
-      setIsProjectsVisible(true);
+    if (lottieRef.current) {
+      const animationInstance = lottie.loadAnimation({
+        container: lottieRef.current,
+        animationData: valve_pressure_animation,
+        renderer: "html",
+        rendererSettings: {
+          imagePreserveAspectRatio: "xMidYMid meet",
+        },
+        loop: false,
+        autoplay: false,
+      });
+
+      animationInstanceRef.current = animationInstance;
     }
-  }, [scrollY]);
-
-  //https://stackoverflow.com/a/71682214
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   const avatarClick = () => {
     setIsActive(!isActive);
+    setHasClicked(true);
+    if (!isActive && animationInstanceRef.current) {
+      animationInstanceRef.current.goToAndStop(15, true);
+      animationInstanceRef.current.play();
+    }
   };
 
   const onMoveToSection = (ref: React.RefObject<HTMLDivElement>) => {
@@ -45,7 +52,9 @@ export default function Base() {
     <div className="background-color">
       <div className="avatar-container">
         <div
-          className={`profile-picture ${isActive ? "active" : "inactive"}`}
+          className={`profile-picture ${
+            hasClicked ? (isActive ? "active" : "inactive") : ""
+          }`}
           onClick={() => avatarClick()}
         >
           <div className="hinge top" />
@@ -59,9 +68,16 @@ export default function Base() {
         </div>
         <div className="info-ball" onClick={() => avatarClick()}>
           <div
-            className={`shadow-element ${isActive ? "active" : "inactive"}`}
+            className={`shadow-element ${
+              hasClicked ? (isActive ? "active" : "inactive") : ""
+            }`}
           />
         </div>
+        <div
+          className="valve-pressure-animation"
+          ref={lottieRef}
+          style={{ width: "1500px", height: "1500px" }}
+        ></div>
         <p className="info-text" onClick={() => avatarClick()}>
           About me
         </p>

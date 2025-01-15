@@ -9,14 +9,14 @@ const Projects = () => {
       <div className="projects">
         <div className="project">
           <div className="project-title">
-            <h2>Personal portfolio</h2>
+            <h2></h2>
           </div>
           <div className="project-description">
-            <p>
-              This website is built with React and TypeScript. The website is
-              hosted on GitHub Pages and the source code can be found on my
-              GitHub.
-            </p>
+            <div className="squareContainer">
+              <div className="square1"></div>
+              <div className="square2"></div>
+              <div className="square3"></div>
+            </div>
           </div>
         </div>
       </div>
